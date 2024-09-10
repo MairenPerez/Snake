@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    internal class Snake
+    internal class Direccion
     {
-        // Definimos la posición de la serptiente 
-        List<Posicion> Cola { get; set; }
     }
 }
