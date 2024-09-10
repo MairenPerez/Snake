@@ -28,14 +28,18 @@ namespace Snake
         {
             for (int i = 0; i <= Altura; i++)
             {
-                // Línea de abajo
-                Console.SetCursorPosition(Anchura, i);
-                Console.WriteLine("<");
+                // Línea laterales 
+                Util.DibujarPosicion(Anchura, i, "|");
+                Util.DibujarPosicion(0, i, "|");
+            }
 
-                // Línea de arriba
-                Console.SetCursorPosition(0, i);
-                Console.WriteLine(">");
+            for (int i = 0; i <= Anchura; i++)
+            {
+                Util.DibujarPosicion(i, 0, "-");
+                Util.DibujarPosicion(i, Altura, "-");
             }
         }
+
+
     }
 }
