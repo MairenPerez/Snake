@@ -27,6 +27,15 @@ namespace Snake
             direccion = Direccion.Abajo;
         }
 
+        public void DibujarSerpiente()
+        {
+            foreach (Posicion posicion in Cola)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Util.DibujarPosicion(posicion.X, posicion.Y, "^");
+            }
+        }
+
         public void Morir()
         {
             throw new NotImplementedException();
