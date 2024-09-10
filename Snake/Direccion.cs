@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    internal class Direccion
+    enum Direccion
     {
+        // Defininimos las direcciones posibles
+        Arriba,
+        Abajo,
+        Derecha,
+        Izquierda,
     }
 }
