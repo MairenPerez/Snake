@@ -24,6 +24,10 @@ namespace Snake
             Posicion = new Posicion(x, y);
             Console.ForegroundColor = ConsoleColor.Red;
             Util.DibujarPosicion(Posicion.X, Posicion.Y, "O");
+            Console.ResetColor();
         }
+
+        public void DibujarManzana()
+        { }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    internal class Tablero
+    class Tablero
     {
         public readonly int Altura;
         public readonly int Anchura;
@@ -30,16 +30,16 @@ namespace Snake
             {
                 // Línea laterales 
                 Util.DibujarPosicion(Anchura, i, "|");
-                Util.DibujarPosicion(0, i, "|");
+                Util.DibujarPosicion( 0, i, "|");
             }
 
             for (int i = 0; i <= Anchura; i++)
             {
-                Util.DibujarPosicion(i, 0, "-");
+                Util.DibujarPosicion( i, 0, "-");
                 Util.DibujarPosicion(i, Altura, "-");
             }
         }
 
-
+       
     }
 }

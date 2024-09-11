@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    enum Direccion
+    public enum Direccion
     {
         // Defininimos las direcciones posibles
         Arriba,

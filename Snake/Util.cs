@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    internal class Util
+    static class Util
     {
         public static void DibujarPosicion(int x, int y, string caracter)
         {
             Console.SetCursorPosition(x, y);
             Console.Write(caracter);
         }
+
     }
 }
