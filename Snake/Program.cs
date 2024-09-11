@@ -21,19 +21,20 @@ namespace Snake
             */
 
             Tablero tablero = new Tablero(20, 20);
-            Snake  snake = new Snake(10, 10);
+            Snake snake = new Snake(10, 10);
 
             // Mientras la serpiente no haya muerto...
             do
             {
-                Console.Clear(); // Limpiamos la consola
-                tablero.DibujarTablero(); // Dibujamos el tablero
+                Console.Clear();
+                tablero.DibujarTablero();
+
                 snake.Moverse(); // Movemos la serpiente
                 snake.DibujarSerpiente();
 
                 // Esperamos 250 milisegundos
                 var sw = Stopwatch.StartNew();
-                while (sw.ElapsedMilliseconds < 250)
+                while (sw.ElapsedMilliseconds <= 250)
                 {
                     snake.Direccion = LeerMovimiento(snake.Direccion); // Dirección actual de la serpiente
                 }
@@ -45,7 +46,7 @@ namespace Snake
 
             Console.ReadKey();
         }
-        
+
         /// <summary>
         /// Si el jugador no pulsa
         /// ninguna tecla, la serpiente
@@ -53,27 +54,21 @@ namespace Snake
         /// </summary>
         /// <param name="movimientoActual"></param>
         /// <returns></returns>
-        static Direccion LeerMovimiento( Direccion movimientoActual)
+        public static Direccion LeerMovimiento(Direccion movimientoActual)
         {
             if (Console.KeyAvailable)
             {
                 var key = Console.ReadKey().Key;
-
-                if (key == ConsoleKey.UpArrow && movimientoActual != Direccion.Abajo)
+                switch (key)
                 {
-                    return Direccion.Arriba;
-                }
-                else if (key == ConsoleKey.DownArrow && movimientoActual != Direccion.Arriba)
-                {
-                    return Direccion.Abajo;
-                }
-                else if (key == ConsoleKey.LeftArrow && movimientoActual != Direccion.Derecha)
-                {
-                    return Direccion.Izquierda;
-                }
-                else if (key == ConsoleKey.RightArrow && movimientoActual != Direccion.Izquierda)
-                {
-                    return Direccion.Derecha;
+                    case ConsoleKey.UpArrow:
+                        return movimientoActual != Direccion.Abajo ? Direccion.Arriba : movimientoActual;
+                    case ConsoleKey.DownArrow:
+                        return movimientoActual != Direccion.Arriba ? Direccion.Abajo : movimientoActual;
+                    case ConsoleKey.LeftArrow:
+                        return movimientoActual != Direccion.Derecha ? Direccion.Izquierda : movimientoActual;
+                    case ConsoleKey.RightArrow:
+                        return movimientoActual != Direccion.Izquierda ? Direccion.Derecha : movimientoActual;
                 }
             }
 

@@ -10,12 +10,14 @@ namespace Snake
     {
         public readonly int Altura;
         public readonly int Anchura;
+        public bool ContieneManzana;
 
         // Constructor
         public Tablero(int altura, int anchura)
         {
             Altura = altura;
             Anchura = anchura;
+            ContieneManzana = false;
         }
 
         /// <summary>

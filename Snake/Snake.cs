@@ -43,30 +43,6 @@ namespace Snake
 
             Cola = nuevaCola; 
 
-
-
-            //if (!estaViva)
-            //    return;
-
-
-            //// Verificar colisiones con el borde del tablero
-            //if (nuevaCabeza.X < 0 || nuevaCabeza.X >= 20 || nuevaCabeza.Y < 0 || nuevaCabeza.Y >= 20)
-            //{
-            //    Morir();
-            //    return;
-            //}
-
-            //// Verificar colisiones con el propio cuerpo
-            //if (Cola.Any(p => p.X == nuevaCabeza.X && p.Y == nuevaCabeza.Y))
-            //{
-            //    Morir();
-            //    return;
-            //}
-
-            //Cola.Insert(0, nuevaCabeza);
-
-            //// Removemos la última posición de la cola si la serpiente no ha comido
-            //Cola.RemoveAt(Cola.Count - 1);
         }
 
         private Posicion ObtenerNuevaPrimPosicion()
@@ -91,6 +67,12 @@ namespace Snake
             }
 
             return new Posicion(x, y);
+        }
+
+        public bool PosicionEnCola(int x, int y)
+        {
+            // return Cola.Any(a => a.X == x && a.Y == y);
+            return Cola.Any(posicion => posicion.X == x && posicion.Y == y);
         }
 
         public void comerManzanas()
