@@ -28,8 +28,8 @@ namespace Snake
             {
                 Console.Clear(); // Limpiamos la consola
                 tablero.DibujarTablero(); // Dibujamos el tablero
-                snake.DibujarSerpiente();
                 snake.Moverse(); // Movemos la serpiente
+                snake.DibujarSerpiente();
 
                 // Esperamos 250 milisegundos
                 var sw = Stopwatch.StartNew();

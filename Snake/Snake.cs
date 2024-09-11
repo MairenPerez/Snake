@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Snake
 {
-    public class Snake
+    public  class Snake
     {
         private List<Posicion> Cola { get; set; }
         public Direccion Direccion { get; set; }
