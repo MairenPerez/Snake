@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    internal class Manzana
+    public class Manzana
     {
-        Posicion Posicion { get; set; }
+        public Posicion Posicion { get; set; }
 
         /// <summary>
         /// Posiciones donde aleatoriamente
@@ -24,7 +24,7 @@ namespace Snake
             Posicion = new Posicion(x, y);
         }
 
-        public void DibujarManzan()
+        public void DibujarManzana()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Util.DibujarPosicion(Posicion.X, Posicion.Y, "O");
@@ -53,10 +53,11 @@ namespace Snake
                 x = random.Next(1, tablero.Anchura - 1);
                 y = random.Next(1, tablero.Altura - 1);
 
-                manzanaValida = !snake.PosicionEnCola(x, y);
+                manzanaValida = snake.PosicionEnCola(x, y);
 
             } while (manzanaValida);
 
+            tablero.ContieneManzana = true;
             return new Manzana(x, y);
         }
     }

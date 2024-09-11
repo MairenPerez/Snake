@@ -22,15 +22,25 @@ namespace Snake
 
             Tablero tablero = new Tablero(20, 20);
             Snake snake = new Snake(10, 10);
-
+            Manzana manzana = new Manzana(0, 0);
             // Mientras la serpiente no haya muerto...
             do
             {
                 Console.Clear();
                 tablero.DibujarTablero();
 
+
                 snake.Moverse(); // Movemos la serpiente
+
+                // Comprobamos si se ha comido la manzana
                 snake.DibujarSerpiente();
+
+                if (!tablero.ContieneManzana)
+                {
+                    manzana = Manzana.CrearManzana(snake, tablero);
+                }
+
+                manzana.DibujarManzana();
 
                 // Esperamos 250 milisegundos
                 var sw = Stopwatch.StartNew();

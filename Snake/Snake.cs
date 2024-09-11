@@ -71,14 +71,18 @@ namespace Snake
 
         public bool PosicionEnCola(int x, int y)
         {
-            // return Cola.Any(a => a.X == x && a.Y == y);
-            return Cola.Any(posicion => posicion.X == x && posicion.Y == y);
+            return Cola.Any(a => a.X == x && a.Y == y);
         }
 
-        public void comerManzanas()
+        public void ComerManzanas( Manzana manzana, Tablero tablero)
         {
-            // Implementar la lógica para aumentar el tamaño y los puntos
-            throw new NotImplementedException();
+           if (PosicionEnCola(manzana.Posicion.X, manzana.Posicion.Y))
+            {
+                Puntos++;
+                tablero.ContieneManzana = false; // Generar nueva manzana automáticamente 
+                Cola.Add(manzana.Posicion); 
+
+            }
         }
     }
 }

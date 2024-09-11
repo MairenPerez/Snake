@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    class Tablero
+    public class Tablero
     {
         public readonly int Altura;
         public readonly int Anchura;
