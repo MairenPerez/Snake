@@ -26,7 +26,7 @@ namespace Snake
 
         public void DibujarManzana()
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Util.DibujarPosicion(Posicion.X, Posicion.Y, "O");
             Console.ResetColor();
         }

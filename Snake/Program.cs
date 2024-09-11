@@ -24,35 +24,46 @@ namespace Snake
             Snake snake = new Snake(10, 10);
             Manzana manzana = new Manzana(0, 0);
             bool haComido = false;
+
             // Mientras la serpiente no haya muerto...
             do
             {
                 Console.Clear();
                 tablero.DibujarTablero();
 
-                snake.Moverse(haComido); 
-                // Comprobamos si se ha comido la manzana
-                haComido = snake.ComerManzanas(manzana, tablero);
-                snake.DibujarSerpiente();
-
-                if (!tablero.ContieneManzana)
+                snake.ComprobamosMuerte(tablero);
+                if (snake.estaViva)
                 {
-                    manzana = Manzana.CrearManzana(snake, tablero);
+                    // Movemos la serpiente
+                    snake.Moverse(haComido); 
+
+                    // Comprobamos si se ha comido la manzana
+                    haComido = snake.ComerManzanas(manzana, tablero);
+                    snake.DibujarSerpiente();
+
+                    if (!tablero.ContieneManzana)
+                    {
+                        manzana = Manzana.CrearManzana(snake, tablero);
+                    }
+
+                        manzana.DibujarManzana();
+
+                        // Esperamos 250 milisegundos
+                        var sw = Stopwatch.StartNew();
+                        while (sw.ElapsedMilliseconds <= 250)
+                        {
+                            snake.Direccion = LeerMovimiento(snake.Direccion); // Dirección actual de la serpiente
+                        }
                 }
-
-                manzana.DibujarManzana();
-
-                // Esperamos 250 milisegundos
-                var sw = Stopwatch.StartNew();
-                while (sw.ElapsedMilliseconds <= 250)
+                else
                 {
-                    snake.Direccion = LeerMovimiento(snake.Direccion); // Dirección actual de la serpiente
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Util.DibujarPosicion(tablero.Anchura / 2, tablero.Altura / 2, "GAME OVER");
+                    Util.DibujarPosicion(tablero.Anchura / 2, (tablero.Altura / 2) + 1, $"Puntuacion {snake.Puntos}");
+                    Console.ResetColor();
                 }
-
-
 
             } while (snake.estaViva);
-
 
             Console.ReadKey();
         }

@@ -8,7 +8,7 @@ namespace Snake
     {
         private List<Posicion> Cola { get; set; }
         public Direccion Direccion { get; set; }
-        private int Puntos { get; set; }
+        public int Puntos { get; set; }
         public bool estaViva { get; set; }
 
         public Snake(int x, int y)
@@ -30,11 +30,32 @@ namespace Snake
             }
         }
 
-        public void Morir()
+        /// <summary>
+        /// Si chocamos contra nosotros 
+        /// o contra el muro.
+        /// </summary>
+        public void ComprobamosMuerte(Tablero tablero)
         {
-            estaViva = false;
-            Console.WriteLine("¡La serpiente ha muerto!");
+            Posicion primeraPosicion = Cola.First();
+
+            estaViva = !((Cola.Count(a => a.X == primeraPosicion.X && a.Y == primeraPosicion.Y) > 1 ) 
+                || CabezaEnPared(tablero, Cola.First()));
         }
+
+        /// <summary>
+        /// Si la primera posición está en 
+        /// cualquiera de los bordes del tablero
+        /// morimos.
+        /// </summary>
+        /// <param name="tablero"></param>
+        /// <param name="primeraPosicion"></param>
+        /// <returns></returns>
+        private bool CabezaEnPared(Tablero tablero, Posicion primeraPosicion)
+        {
+           return primeraPosicion.X == 0 || primeraPosicion.X == tablero.Anchura || primeraPosicion.Y == 0 
+                || primeraPosicion.Y == tablero.Altura;
+        }
+
 
         public void Moverse(bool haComido)
         {
