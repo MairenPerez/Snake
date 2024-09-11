@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Snake
 {
-    public  class Snake
+    public class Snake
     {
         private List<Posicion> Cola { get; set; }
         public Direccion Direccion { get; set; }
@@ -36,19 +36,25 @@ namespace Snake
             Console.WriteLine("¡La serpiente ha muerto!");
         }
 
-        public void Moverse()
+        public void Moverse(bool haComido)
         {
             List<Posicion> nuevaCola = new List<Posicion>();
             nuevaCola.Add(ObtenerNuevaPrimPosicion());
 
-            Cola = nuevaCola; 
+            nuevaCola.AddRange(Cola); // Añadir el resto de la cola
 
+            if (!haComido)
+            {
+                nuevaCola.Remove(nuevaCola.Last());
+            }
+
+            Cola = nuevaCola;
         }
 
         private Posicion ObtenerNuevaPrimPosicion()
         {
             int x = Cola.First().X;
-            int y = Cola.First().Y; 
+            int y = Cola.First().Y;
 
             switch (Direccion)
             {
@@ -69,20 +75,37 @@ namespace Snake
             return new Posicion(x, y);
         }
 
+        /// <summary>
+        /// Añadir un elemento a la cola
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public bool PosicionEnCola(int x, int y)
         {
             return Cola.Any(a => a.X == x && a.Y == y);
         }
 
-        public void ComerManzanas( Manzana manzana, Tablero tablero)
+        /// <summary>
+        /// Comer manzanas
+        /// 
+        /// Cada vez que la serpiente
+        /// interactue con la manzana 
+        /// aumentará su tamaño así como sus puntos.
+        /// </summary>
+        /// <param name="manzana"></param>
+        /// <param name="tablero"></param>
+        /// <returns>False</returns>
+        public bool ComerManzanas(Manzana manzana, Tablero tablero)
         {
-           if (PosicionEnCola(manzana.Posicion.X, manzana.Posicion.Y))
+            if (PosicionEnCola(manzana.Posicion.X, manzana.Posicion.Y))
             {
-                Puntos++;
+                Puntos += 10;
                 tablero.ContieneManzana = false; // Generar nueva manzana automáticamente 
-                Cola.Add(manzana.Posicion); 
-
+                return true;
             }
+
+            return false;
         }
     }
 }

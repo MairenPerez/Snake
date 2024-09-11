@@ -20,19 +20,19 @@ namespace Snake
              * Creamos una nueva serpiente
             */
 
-            Tablero tablero = new Tablero(20, 20);
+            Tablero tablero = new Tablero(29, 29);
             Snake snake = new Snake(10, 10);
             Manzana manzana = new Manzana(0, 0);
+            bool haComido = false;
             // Mientras la serpiente no haya muerto...
             do
             {
                 Console.Clear();
                 tablero.DibujarTablero();
 
-
-                snake.Moverse(); // Movemos la serpiente
-
+                snake.Moverse(haComido); 
                 // Comprobamos si se ha comido la manzana
+                haComido = snake.ComerManzanas(manzana, tablero);
                 snake.DibujarSerpiente();
 
                 if (!tablero.ContieneManzana)
